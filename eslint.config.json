@@ -1,0 +1,20 @@
+{
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "max-len": ["warn", { "code": 230 }],
+    "array-bracket-spacing": ["error", "always"],
+    "space-in-parens": ["error", "always"],
+    "prefer-template": ["error"],
+    "prefer-object-has-own": ["warn"],
+    "prefer-destructuring": [
+      "warn",
+      {
+        "array": true,
+        "object": true
+      }
+    ],
+    "sort-vars": ["warn"],
+    "require-await": ["warn"]
+  }
+}
