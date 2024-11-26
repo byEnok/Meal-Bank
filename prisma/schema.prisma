@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider  = "postgresql"
@@ -10,72 +8,66 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model User {
-  id              Int             @id @default(autoincrement())
-  name            String          @unique
-  password        String          @unique
-  email           String          @unique
-  meals           Meal[]
-  emailVerified   Boolean
-  image           String?
-  createdAt       DateTime
-  updatedAt       DateTime
-
-  session         Session[]
-  account         Account[]
+  id            String    @id
+  name          String
+  email         String    @unique
+  createdAt     DateTime
+  emailVerified Boolean
+  image         String?
+  updatedAt     DateTime
+  username      String    @unique
+  account       Account[]
+  meals         Meal[]
+  session       Session[]
 }
 
 model Meal {
-  id              Int              @id @default(autoincrement())
-  name            String           @unique
-  image           String?
-  comments        String?
-  notes           String?
-  ingredients     String?
-  timeToCook      String?
-
-  categoryId      Int
-  userId          Int
-
-  category        MealCategory        @relation(fields: [categoryId], references: [id])
-  user            User                @relation(fields: [userId], references: [id])
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  image       String?
+  comments    String?
+  notes       String?
+  ingredients String?
+  timeToCook  String?
+  userId      String
+  categoryId  Int
+  rating      Int          @db.SmallInt
+  category    MealCategory @relation(fields: [categoryId], references: [id])
+  user        User         @relation(fields: [userId], references: [id])
 }
 
 model MealCategory {
-  id              Int                    @id @default(autoincrement())
-  name            String                 @unique
-  Meal            Meal[]
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  Meal Meal[]
 }
 
 model Session {
-  id              String           @id
-  expiresAt       DateTime
-  ipAddress       String?
-  userAgent       String?
-  userId          Int
-  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
-  id              String    @id
-  accountId       String
-  providerId      String
-  userId          Int
-  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken     String?
-  refreshToken    String?
-  idToken         String?
-  expiresAt       DateTime?
-  password        String?
+  id           String    @id
+  accountId    String
+  providerId   String
+  userId       String
+  accessToken  String?
+  refreshToken String?
+  idToken      String?
+  expiresAt    DateTime?
+  password     String?
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Verification {
-  id              String   @id
-  identifier      String
-  value           String
-  expiresAt       DateTime
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
 }

@@ -14,7 +14,9 @@
     /* BLACK & WHITE */
 
     --background-opposite: hsl(0, 0%, 15%);
-    --background: hsl(50 0% 90%);
+    --background: hsl(0 0% 95%);
+    /* Gray Below */
+    /* --background: hsl(0 0% 60%); */
     /* --background-darker: hsl(30, 2%, 54%); */
     /* --background-darker: hsl(36, 4%, 74%); */
     --background-darker: hsl(0, 0%, 80%);
@@ -211,9 +213,15 @@
     margin: 0;
     border-color: var(--accentTwo);
   }
+  .UserFeedbackInput:focus {
+    outline: none;
+  }
   input:focus {
     outline: none;
-    border: 2px solid var(--border-focus);
+    /* border: 2px solid var(--border-focus); */
+  }
+  input {
+    background: unset;
   }
   button:hover {
     background-color: var(--background-darker);
@@ -272,5 +280,274 @@
     color: var(--textColor);
     width: 20px;
     height: 20px;
+  }
+
+  /* Newtons Craddle - Loading Screen */
+  .newtons-cradle {
+    --uib-size: 50px;
+    --uib-speed: 1.2s;
+    --uib-color: #474554;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: var(--uib-size); */
+    /* height: var(--uib-size); */
+  }
+
+  .newtons-cradle__dot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 25%;
+    transform-origin: center top;
+  }
+
+  .newtons-cradle__dot::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 25%;
+    border-radius: 50%;
+    background-color: var(--uib-color);
+  }
+
+  .newtons-cradle__dot:first-child {
+    animation: swing var(--uib-speed) linear infinite;
+  }
+
+  .newtons-cradle__dot:last-child {
+    animation: swing2 var(--uib-speed) linear infinite;
+  }
+
+  @keyframes swing {
+    0% {
+      transform: rotate(0deg);
+      animation-timing-function: ease-out;
+    }
+
+    25% {
+      transform: rotate(70deg);
+      animation-timing-function: ease-in;
+    }
+
+    50% {
+      transform: rotate(0deg);
+      animation-timing-function: linear;
+    }
+  }
+
+  @keyframes swing2 {
+    0% {
+      transform: rotate(0deg);
+      animation-timing-function: linear;
+    }
+
+    50% {
+      transform: rotate(0deg);
+      animation-timing-function: ease-out;
+    }
+
+    75% {
+      transform: rotate(-70deg);
+      animation-timing-function: ease-in;
+    }
+  }
+
+  /* STAR RATING */
+  /* STAR RATING */
+  /* STAR RATING */
+  /* STAR RATING */
+  /* STAR RATING */
+  .radio {
+    /* display: flex; */
+    flex-direction: row-reverse;
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
+    /* gap: 10px; */
+  }
+
+  .radio > input {
+    position: absolute;
+    appearance: none;
+  }
+
+  .radio > label {
+    cursor: pointer;
+    font-size: 20px;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .radio > label > svg {
+    fill: #666;
+    transition: fill 0.3s ease;
+  }
+
+  /* .radio > label::before,
+  .radio > label::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #ff9e0b;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+    animation: particle-explosion 1s ease-out;
+  } */
+
+  /* .radio > label::before {
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+  } */
+
+  .radio > label::after {
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+  }
+
+  /* .radio > label:hover::before,
+  .radio > label:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.5);
+  } */
+
+  .radio > label:hover {
+    transform: scale(1.2);
+    animation: pulse 0.6s infinite alternate;
+  }
+
+  /* Star glow and animation on hover */
+.radio label:hover svg,
+.radio label:hover ~ label svg {
+  fill: #ffa723; /* Your hover color */
+}
+
+  
+  
+  /* Reset fill for unhovered stars */
+  /* Default unfilled color */
+  .radio label svg {
+    fill: #e5e5e5;
+  } 
+
+  /* DIFFERENT VERSON */
+  /* .radio > label:hover > svg {
+    fill: #ff9e0b;
+    filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+    animation: shimmer 1s ease infinite alternate;
+  } */
+
+  .radio input:checked + label svg,
+  .radio input:checked + label ~ label svg {
+    fill: #ff9e0b;
+    filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+    animation: pulse 0.8s infinite alternate;
+  }
+
+  /* Highlight the stars */
+  .radio > input:checked + label ~ label > svg,
+  .radio > input:checked + label > svg {
+    fill: #ff9e0b; 
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes particle-explosion {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      filter: drop-shadow(0 0 10px rgba(255, 158, 11, 0.5));
+    }
+    100% {
+      filter: drop-shadow(0 0 20px rgba(255, 158, 11, 1));
+    }
+  }
+
+  .radio > input:checked + label:hover,
+  .radio > input:checked + label:hover ~ label {
+    fill: #e58e09;
+  }
+
+  .radio > label:hover,
+  .radio > label:hover ~ label {
+    fill: #ff9e0b;
+  }
+
+  .radio input:checked ~ label svg {
+    fill: #ffa723;
+  }
+
+  /* IMAGE FILE DROP */
+  .custum-file-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-around;
+    /* align-items: center; */
+    /* gap: 5px; */
+    /* cursor: pointer; */
+    border: 2px dashed #e8e8e8;
+    background-color: #212121;
+    padding: 1.5rem;
+    /* border-radius: 10px; */
+    /* box-shadow: 0px 48px 35px -48px #e8e8e8; */
+    box-shadow: 0px 17px 34px -28px rgba(255, 255, 255, 0.38);
+  }
+
+  .custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+  }
+
+  .custum-file-upload .icon svg {
+    height: 50px;
+    fill: #e8e8e8;
+  }
+
+  .custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .custum-file-upload .text span {
+    font-weight: 400;
+    color: #e8e8e8;
+  }
+
+  .custum-file-upload input {
+    display: none;
   }
 }

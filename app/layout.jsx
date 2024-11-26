@@ -1,8 +1,13 @@
 /** @type {import("next").Metadata} */
 import './globals.css'
 import './icons.css'
-import { ThemeProvider } from '@/components/services/Theme-Provider'
-import { Lobster, RobotoFont } from './fonts/fonts'
+import Navbar from '../globalComponents/core/Navbar'
+import Footer from '../globalComponents/core/Footer'
+import { ThemeProvider } from '@/globalComponents/services/Theme-Provider'
+import { Lobster, RobotoFont } from '@/fonts/fonts'
+import { Bounce, ToastContainer } from 'react-toastify'
+import { Suspense } from 'react'
+import Loading from './Loading'
 // import localFont from 'next/font/local'
 
 // const geistSans = localFont({
@@ -23,10 +28,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
-      <body className={` antialiased ${RobotoFont.variable} ${Lobster.variable}`}>
-        <ThemeProvider attribute='class' defaultTheme={'dark'} disableTransitionOnChange={false}>
-          {children}
+    <html lang='en' className='!scroll-smooth overflow-x-hidden'>
+      <body className={` antialiased ${RobotoFont.variable} ${Lobster.variable} min-h-screen flex flex-col`}>
+        <ThemeProvider attribute='class' defaultTheme={'dark'} disableTransitionOnChange={true}>
+          <Navbar />
+          <Suspense fallback={<Loading />}>
+            <ToastContainer position='top-right' autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme='dark' transition={Bounce} />
+            {children}
+          </Suspense>
+          {/* <Footer /> */}
         </ThemeProvider>
       </body>
     </html>

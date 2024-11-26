@@ -1,13 +1,14 @@
-import Footer from '@/components/core/Footer'
-import HomePage from '@/components/core/HomePage'
-import Navbar from '@/components/core/Navbar'
+import Footer from '@/globalComponents/core/Footer'
+// import HomePage from '@/globalComponents/core/HomePage'
+import HomePage from '../globalComponents/core/HomePage'
 
-export default function Home() {
+export default async function Home() {
   return (
-    <div className='flex flex-col justify-evenly bg-background h-screen overflow-x-hidden'>
-      <Navbar />
+    <div className='flex flex-col'>
+      {/* <div className='flex-1 '> */}
       <HomePage />
-      <Footer />
+      {/* </div> */}
+      {/* <Footer /> */}
     </div>
   )
 }

@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
+    /* Language and Environment */
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "preserve",
+
+    /* Module Resolution */
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node", "jest"],
+    "useDefineForClassFields": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  /* Files to Include */
+  "include": ["**/*.ts", "**/*.tsx", "/features/**/*.{ts,tsx}", "lib/*.{ts,tsx}", ".next/types/**/*.ts"],
+  /* Files to Exclude */
+  "exclude": ["node_modules", "**/*.{js,jsx}", ".next"]
+}
