@@ -12,10 +12,9 @@ export const TESTERDB = actionClient.schema(TESTERSCHEMA).action(async ({ parsed
 
   try {
     if (values) {
-      // return { success: true, message: 'Creation Success!' }
       return { success: true, message: 'SERVER: Creation Success!' }
     } else {
-      return { success: false, message: 'Creation FAILURE!' }
+      return { success: false, message: 'SERVER: Creation FAILURE!' }
     }
   } catch (e) {
     console.error('TESTING FAILED...', e)

@@ -6,20 +6,28 @@ import prisma from '../../../../lib/prismaClient'
 import { cache } from 'react'
 import { headers } from 'next/headers'
 
+// USER DATA WITH REACT CACHE
+export const CachedUserSession = cache(async (userId) => {
+  const cachedData = await auth.api.getSession({
+    headers: headers(),
+  })
+  return cachedData
+})
+
+export const UserSession = async () => {
+  const data = await auth.api.getSession({
+    headers: headers(),
+  })
+  const userData = CachedUserSession(data.user.id)
+  return userData
+}
+
 // export async function UserSession() {
 //   const data = await auth.api.getSession({
 //     headers: headers(),
 //   })
 //   return data
 // }
-
-// USER DATA WITH REACT CACHE
-export const UserSession = cache(async () => {
-  const data = await auth.api.getSession({
-    headers: headers(),
-  })
-  return data
-})
 
 // USER DATA WITHOUT REACT CACHE
 // export async function UserSession() {

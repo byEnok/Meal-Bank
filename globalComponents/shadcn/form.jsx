@@ -49,7 +49,7 @@ const FormItem = React.forwardRef(({ className, expand = false, ...props }, ref)
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={cn(`flex flex-col ${expand ? 'flex-1' : 'shrink-1 max-w-56'} text-center min-w-52 min-h-52 justify-evenly border-2 border-border rounded-lg p-2 gap-5 focus-within:border-focusColor `, className)} {...props} />
+      <div ref={ref} className={cn(`flex flex-col ${expand ? 'flex-1' : ' max-w-56'} items-center min-w-52 min-h-52 justify-evenly border-2 border-border rounded-lg p-2  focus-within:border-focusColor `, className)} {...props} />
     </FormItemContext.Provider>
   )
 })
@@ -58,7 +58,7 @@ FormItem.displayName = 'FormItem'
 const FormLabel = React.forwardRef(({ className, ...props }, ref) => {
   const { error, formItemId } = useFormField()
 
-  return <Label ref={ref} className={cn('text-xl md:text-3xl text-center', className)} htmlFor={formItemId} {...props} />
+  return <Label ref={ref} className={cn('text-xl md:text-2xl text-center', className)} htmlFor={formItemId} {...props} />
   // return <Label ref={ref} className={cn(error ? 'text-destructive text-xl md:text-3xl' : 'text-xl md:text-3xl text-center', className)} htmlFor={formItemId} {...props} />
 })
 FormLabel.displayName = 'FormLabel'

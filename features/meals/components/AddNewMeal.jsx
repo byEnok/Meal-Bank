@@ -1,24 +1,25 @@
 'use client'
 
-import { links } from './CategoryLinks'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import { useFormField, Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField } from '../../../globalComponents/shadcn/form'
-
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '../../../globalComponents/shadcn/button'
 import { useForm } from 'react-hook-form'
-import { newMealSchema } from '../schemas/newMealSchema'
 import { useAction } from 'next-safe-action/hooks'
-import { CreateNewMeal } from '../server/db/mealBankActions'
-import { revalidatePath } from 'next/cache'
+
+import { useFormField, Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField } from '../../../globalComponents/shadcn/form'
+import Rating from '../../../globalComponents/core/Rating'
+import { Button } from '../../../globalComponents/shadcn/button'
+import Image from 'next/image'
 import TimeToCook from './TimeToCookMeal'
+import CategoryForm from './forms/CategoryForm'
+
+import { newMealSchema } from '../schemas/newMealSchema'
+import { CreateNewMeal } from '../server/db/mealBankActions'
+
 import Loading from '../../../app/Loading'
 import { toast } from 'react-toastify'
-import Rating from '../../../globalComponents/core/Rating'
-import ImageForm from '../../../globalComponents/core/ImageForm'
 
-import CategoryForm from './forms/CategoryForm'
+import { links } from './CategoryLinks'
+import { revalidatePath } from 'next/cache'
+import { useState, useEffect } from 'react'
 
 function AddNewMeal({ sessionData }) {
   const { user, session } = sessionData
@@ -225,8 +226,16 @@ function AddNewMeal({ sessionData }) {
                       <FormItem className='custum-file-upload text-center'>
                         {/* <FormLabel></FormLabel> */}
                         <FormControl>
-                          <ImageForm {...field} onFileChange={handleFileChange} />
-                          {/* <input type='file' accept='image/*' {...field} /> */}
+                          {/* <ImageForm {...field} onFileChange={handleFileChange} /> */}
+                          <input
+                            type='file'
+                            accept='image/*'
+                            onChange={(e) => {
+                              const file = e.target.files[0]
+                              handleFileChange()
+                            }}
+                            {...field}
+                          />
                           {/* <input type='file' accept='image/*' onChange={(e) => field.onChange(e.target.files[0])} /> */}
                         </FormControl>
                         <FormDescription>- Max image size (1MB)</FormDescription>

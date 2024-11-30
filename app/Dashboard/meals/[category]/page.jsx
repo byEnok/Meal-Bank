@@ -4,7 +4,7 @@ import AddNewMeal from '../../../../features/meals/components/AddNewMeal'
 import TESTER from '../../../../features/meals/components/TESTER'
 // import ShowMeal from '@/features/meals/components/ShowMeal'
 // import CategoryLinks from '@/features/meals/components/CategoryLinks'
-import { userData, UserSession } from '../../../../features/users/server/db/userActions'
+import { UserSession } from '../../../../features/users/server/db/userActions'
 
 async function page() {
   const sessionData = await UserSession()

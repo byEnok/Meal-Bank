@@ -34,6 +34,9 @@ export const theme = {
       textColor: 'var(--textColor)',
       textHover: 'var(--textHover)',
 
+      // SHADCN FORM SELECTOR HIGLIGHT BG COLOR
+      oppositeSelector: 'var(--background-opposite-selector)',
+
       // Shadcn Component Colors
       warning: 'var(--warning)',
       warningForeground: 'var(--warning-foreground)',

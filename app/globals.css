@@ -14,6 +14,7 @@
     /* BLACK & WHITE */
 
     --background-opposite: hsl(0, 0%, 15%);
+    --background-opposite-selector: hsla(0, 0%, 15%, 0.2);
     --background: hsl(0 0% 95%);
     /* Gray Below */
     /* --background: hsl(0 0% 60%); */
@@ -86,7 +87,9 @@
   .dark {
     box-sizing: border-box;
 
-    --background-opposite: hsl(50 0% 90%);
+    --background-opposite: hsl(0 0% 90%);
+    --background-opposite-selector: hsla(0, 0%, 90%, 0.2);
+
     /* --background: hsl(0, 0%, 15%); */
     --background: hsl(249, 11%, 12%);
     --background-darker: hsl(0, 0%, 5%);
@@ -290,7 +293,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     /* width: var(--uib-size); */
     /* height: var(--uib-size); */
   }
@@ -360,20 +363,21 @@
   /* STAR RATING */
   /* STAR RATING */
   /* STAR RATING */
-  .radio {
-    /* display: flex; */
-    flex-direction: row-reverse;
-    /* flex-wrap: wrap; */
-    /* justify-content: center; */
-    /* gap: 10px; */
-  }
+  /* .radio { */
+  /* display: flex; */
+  /* flex-direction: row-reverse; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  /* gap: 10px; */
+  /* } */
 
-  .radio > input {
+  /* .radio > input {
     position: absolute;
     appearance: none;
-  }
+  } */
 
-  .radio > label {
+  /* USED IN OLD */
+  .star-label {
     cursor: pointer;
     font-size: 20px;
     position: relative;
@@ -381,11 +385,13 @@
     transition: transform 0.3s ease;
   }
 
-  .radio > label > svg {
+  /* USED IN OLD */
+  .star-label > .star-svg {
     fill: #666;
     transition: fill 0.3s ease;
   }
 
+  /* USED IN OLD */
   /* .radio > label::before,
   .radio > label::after {
     content: '';
@@ -408,36 +414,62 @@
     transform: translateX(-50%) scale(0);
   } */
 
-  .radio > label::after {
+  /* USED IN OLD */
+  /* .star-label::after {
     bottom: -15px;
     left: 50%;
     transform: translateX(-50%) scale(0);
-  }
+  } */
 
+  /* USED IN OLD */
   /* .radio > label:hover::before,
   .radio > label:hover::after {
     opacity: 1;
     transform: translateX(-50%) scale(1.5);
   } */
 
-  .radio > label:hover {
+  /* USED IN OLD */
+  /* .star-label:hover {
     transform: scale(1.2);
     animation: pulse 0.6s infinite alternate;
-  }
+  } */
 
   /* Star glow and animation on hover */
-.radio label:hover svg,
-.radio label:hover ~ label svg {
-  fill: #ffa723; /* Your hover color */
-}
+  /* .star-label:hover .star-svg,
+.star-label:hover ~ .star-label .star-svg {
+  fill: #ffa723;
+}  */
 
-  
-  
   /* Reset fill for unhovered stars */
+
   /* Default unfilled color */
-  .radio label svg {
+  /* .star-svg {
     fill: #e5e5e5;
-  } 
+  }  */
+
+  /* New ChatGPT CSS for SHADCN RADIO FORM */
+
+  /* Highlight the currently selected star */
+  .star-container.active .star-svg {
+    fill: #ff9e0b;
+    /* Selected color */
+    filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+    animation: pulse 0.8s infinite alternate;
+  }
+
+  /* Hover effect for each star */
+  /* .star-container .star-label:hover .star-svg {
+  fill: #ffa723; */
+  /* Hover color */
+  /* } */
+
+  /* Reset hover effect for the selected star */
+  /* .star-container.active .star-label:hover .star-svg {
+  fill: #e58e09;  */
+  /* Selected hover override */
+  /* } */
+
+  /* New CSS for SHADCN RADIO FORM */
 
   /* DIFFERENT VERSON */
   /* .radio > label:hover > svg {
@@ -446,18 +478,32 @@
     animation: shimmer 1s ease infinite alternate;
   } */
 
-  .radio input:checked + label svg,
-  .radio input:checked + label ~ label svg {
+  /* .radio input:checked + .star-label .star-svg,
+  .radio input:checked + .star-label ~ .star-label .star-svg {
     fill: #ff9e0b;
     filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
     animation: pulse 0.8s infinite alternate;
-  }
+  } */
 
   /* Highlight the stars */
-  .radio > input:checked + label ~ label > svg,
-  .radio > input:checked + label > svg {
+  /* .radio > input:checked + .star-label ~ .star-label > .star-svg,
+  .radio > input:checked + .star-label > .star-svg {
     fill: #ff9e0b; 
   }
+
+  .radio > input:checked + .star-label:hover,
+  .radio > input:checked + .star-label:hover ~ .star-label {
+    fill: #e58e09;
+  }
+
+  .radio > .star-label:hover,
+  .radio > .star-label:hover ~ .star-label {
+    fill: #ff9e0b;
+  }
+
+  .radio input:checked ~ .star-label .star-svg {
+    fill: #ffa723;
+  } */
 
   @keyframes pulse {
     0% {
@@ -492,32 +538,20 @@
     }
   }
 
-  .radio > input:checked + label:hover,
-  .radio > input:checked + label:hover ~ label {
-    fill: #e58e09;
-  }
-
-  .radio > label:hover,
-  .radio > label:hover ~ label {
-    fill: #ff9e0b;
-  }
-
-  .radio input:checked ~ label svg {
-    fill: #ffa723;
-  }
-
   /* IMAGE FILE DROP */
   .custum-file-upload {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: space-around;
+    width: fit-content;
     /* align-items: center; */
     /* gap: 5px; */
     /* cursor: pointer; */
     border: 2px dashed #e8e8e8;
-    background-color: #212121;
-    padding: 1.5rem;
+    /* background-color: #212121; */
+    background-color: transparent;
+    /* padding: 1.5rem; */
     /* border-radius: 10px; */
     /* box-shadow: 0px 48px 35px -48px #e8e8e8; */
     box-shadow: 0px 17px 34px -28px rgba(255, 255, 255, 0.38);
@@ -530,8 +564,8 @@
     justify-content: center;
   }
 
-  .custum-file-upload .icon svg {
-    height: 50px;
+  .custum-file-upload .icon .svg {
+    height: fit-content;
     fill: #e8e8e8;
   }
 
