@@ -253,7 +253,7 @@ function TESTER({ sessionData }) {
                   <div className={`bg-transparent border-0 p-0 m-0 h-full w-full cursor-zoom-in`} onClick={() => setImageFullscreen(true)}>
                     <Image src={imageInput} width={250} height={250} alt='Uploaded Image' className='border-2 border-border rounded-lg p-1' />
                   </div>
-                  <Button className='absolute h-7 w-7  top-0 -left-8 font-semibold text-md ' onClick={removeCurrentImage}>
+                  <Button className='absolute h-6 w-7 text-center rounded-xl top-0 -right-7 font-bold text-xs ' onClick={removeCurrentImage}>
                     X
                   </Button>
                 </div>

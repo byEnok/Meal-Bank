@@ -5,24 +5,17 @@ import Link from 'next/link'
 import { authClient } from '../../lib/authClient'
 import { useRouter } from 'next/navigation'
 
-function Navbar({ sessionData }) {
-  // SERVER SESSION DATA
-  const { session, user } = sessionData
-  // CLIENT SESSION DATA
-  const { isPending, error } = authClient.useSession()
-  const router = useRouter()
+function Navbar() {
   const [navbarLocked, setNavbarLocked] = useState(false)
-  const [userLoggedIn, setUserLoggedIn] = useState(!!session?.id)
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const router = useRouter()
 
-  // const sessionId = session.session.id
+  // CLIENT SESSION DATA
+  const { data: session, isPending, error } = authClient.useSession()
 
   useEffect(() => {
-    // setUserLoggedIn(!!session?.id)
-    // if (!isPending) {
-    // }
-    // console.log('UserData:', session?.user)
-    // console.log('UserLoggedIn:', userLoggedIn)
-  }, [])
+    setUserLoggedIn(!!session)
+  }, [session])
 
   useEffect(() => {
     const checkScrollWheel = () => {
@@ -55,30 +48,26 @@ function Navbar({ sessionData }) {
           <Link href={`/`} className='text-textColor hover:text-textHover'>
             Home
           </Link>
-          {/* {!isPending && ( */}
-          {/* <> */}
-          {userLoggedIn && (
-            <Link href='/Dashboard' className='text-textColor hover:text-textHover'>
-              Meal Bank
-            </Link>
-          )}
-          {!userLoggedIn ? (
+          {userLoggedIn ? (
+            <>
+              <Link href='/Dashboard' className='text-textColor hover:text-textHover'>
+                Meal Bank
+              </Link>
+              <button
+                className={`text-textColor hover:text-textHover`}
+                onClick={() => {
+                  HandleLogOut()
+                }}
+              >
+                Log Out
+              </button>
+            </>
+          ) : (
             <Link href='/LogIn' className={`text-textColor hover:text-textHover`}>
               Log In
               {/* <span className='material-symbols-outlined '>login</span> */}
             </Link>
-          ) : (
-            <button
-              className={`text-textColor hover:text-textHover`}
-              onClick={() => {
-                HandleLogOut()
-              }}
-            >
-              Log Out
-            </button>
           )}
-          {/* </> */}
-          {/* )} */}
           {/* <span className='absolute right-5'> */}
           <ModeToggle />
           {/* </span> */}

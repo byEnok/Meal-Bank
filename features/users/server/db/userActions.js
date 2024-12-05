@@ -9,17 +9,20 @@ import { headers } from 'next/headers'
 // USER DATA WITH REACT CACHE
 export const CachedUserSession = cache(async (userId) => {
   const cachedData = await auth.api.getSession({
-    headers: headers(),
+    headers: await headers(),
   })
   return cachedData
 })
 
 export const UserSession = async () => {
   const data = await auth.api.getSession({
-    headers: headers(),
+    headers: await headers(),
   })
-  const userData = CachedUserSession(data.user.id)
-  return userData
+
+  // Pass userId to CachedUserSession
+  // const userData = CachedUserSession(data.user.id)
+  // return userData
+  return data
 }
 
 // export async function UserSession() {

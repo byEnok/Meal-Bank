@@ -292,8 +292,8 @@
     --uib-color: #474554;
     position: relative;
     display: flex;
-    align-items: center;
-    /* justify-content: center; */
+    /* align-items: center; */
+    justify-content: center;
     /* width: var(--uib-size); */
     /* height: var(--uib-size); */
   }
