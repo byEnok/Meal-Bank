@@ -8,8 +8,8 @@ import Loading from '../../../../app/Loading'
 import { usePathname } from 'next/navigation'
 
 function LoginForm() {
-  const [isLoading, setIsLoading] = useState(false)
   const [logInSuccess, setLogInSuccess] = useState()
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const urlParams = usePathname()
   let returnToUrl = ''
@@ -20,31 +20,35 @@ function LoginForm() {
 
   // SIGN IN USER
   async function SignInUser(formData) {
-    try {
-      await authClient.signIn.username(
-        {
-          username: formData.get('username'),
-          password: formData.get('password'),
+    // try {
+    await authClient.signIn.username(
+      {
+        username: formData.get('username'),
+        password: formData.get('password'),
+      },
+      {
+        onRequest: () => {
+          setIsLoading(true)
+          console.log('Request...')
         },
-        {
-          onRequest: () => {
-            setIsLoading(true)
-          },
-          onSuccess: () => {
-            setLogInSuccess(true)
-            returnToUrl ? router.replace(returnToUrl) : router.push('/Dashboard')
-          },
-          onError: (error) => {
-            setLogInSuccess(false)
-            console.error('Could not Sign in', error)
-          },
-        }
-      )
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setIsLoading(false)
-    }
+        onSuccess: () => {
+          console.log('Loading...')
+          setLogInSuccess(true)
+          setIsLoading(false)
+          // returnToUrl ? router.replace(returnToUrl) : router.push('/Dashboard')
+          router.push('/Dashboard')
+        },
+        onError: (error) => {
+          setLogInSuccess(false)
+          console.error('Could not Sign in', error)
+        },
+      }
+    )
+    // } catch (error) {
+    //   console.error(error)
+    // } finally {
+    //   setIsLoading(false)
+    // }
   }
 
   return (
@@ -54,6 +58,7 @@ function LoginForm() {
         <form
           action={(formData) => {
             SignInUser(formData)
+            // console.log(formData)
           }}
         >
           <div className={`sign-in-card flex flex-col gap-8 justify-center items-center rounded-2xl bg-background border-2 border-border `}>
