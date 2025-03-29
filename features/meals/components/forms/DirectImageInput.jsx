@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
-const DirectImageInput = React.forwardRef(({ className, type, onChange, ...props }, ref) => {
+const DirectImageInput = React.forwardRef(({ className, type, onChange, value, ...props }, ref) => {
   return (
     <input
       type={type}
+      value={value}
       onChange={(e) => {
         const file = e.target.files[0]
         // console.log('input:', file)

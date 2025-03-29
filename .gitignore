@@ -13,6 +13,9 @@
 /.next/
 /out/
 
+# Folders
+/MD/
+
 # production
 /build
 

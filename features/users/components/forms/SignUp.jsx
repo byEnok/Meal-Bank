@@ -150,11 +150,11 @@ function RegisterUser() {
 
           {/* IMAGE */}
           <div className=''>
-            <label htmlFor='image' class={`flex flex-col gap-3 cursor-pointer justify-center border-2 border-dotted border-border rounded-lg p-3  ${theme === 'light' ? 'bg-zinc-400' : 'bg-zinc-900'} `}>
+            <label htmlFor='image' className={`flex flex-col gap-3 cursor-pointer justify-center border-2 border-dotted border-border rounded-lg p-3  ${theme === 'light' ? 'bg-zinc-400' : 'bg-zinc-900'} `}>
               <div class='flex justify-center items-center'>
                 <Image src='/icons/SVG/cloud-upload.svg' width={iconSize} height={iconSize} alt='File Icon' />
               </div>
-              <div class='flex justify-center items-center '>
+              <div className='flex justify-center items-center '>
                 <span className='font-semibold text-xs md:text-sm'>Click to upload image</span>
               </div>
               <input {...register('image')} id='file' name='image' type='file' accept='image/*' className='hidden flex-1' />

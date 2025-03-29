@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { authClient } from '../../../../lib/authClient'
 import { useEffect, useState } from 'react'
 import { redirect, useRouter } from 'next/navigation'
-import Loading from '../../../../app/Loading'
 import { usePathname } from 'next/navigation'
+import Loading from '../../../../app/Loading'
 
 function LoginForm() {
   const [logInSuccess, setLogInSuccess] = useState()
@@ -40,6 +40,7 @@ function LoginForm() {
         },
         onError: (error) => {
           setLogInSuccess(false)
+          // TODO - show a toast or component to show error message.
           console.error('Could not Sign in', error)
         },
       }

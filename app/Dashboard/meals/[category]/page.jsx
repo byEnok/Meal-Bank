@@ -2,12 +2,14 @@
 // import { GetMeals } from '@/features/meals/server/db/mealBankActions'
 import AddNewMeal from '../../../../features/meals/components/AddNewMeal'
 import TESTER from '../../../../features/meals/components/TESTER'
+// import CategoryLinks from '../../../'
 // import ShowMeal from '@/features/meals/components/ShowMeal'
-// import CategoryLinks from '@/features/meals/components/CategoryLinks'
+import CategoryLinks from '@/features/meals/components/CategoryLinks'
 import { UserSession } from '../../../../features/users/server/db/userActions'
 
 async function page() {
   const sessionData = await UserSession()
+  const categories = ['Breakfast', 'Lunch', 'Dinner', 'Dessert']
   // console.log('PAGE COMPONENT | ON THE SERVER |', user)
 
   // if (!data) {
@@ -24,6 +26,7 @@ async function page() {
 
   return (
     <div className='flex flex-col'>
+      {/* <CategoryLinks /> */}
       {/* <AddNewMeal sessionData={sessionData} /> */}
       <TESTER sessionData={sessionData} />
 

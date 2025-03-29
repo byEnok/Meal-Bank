@@ -17,6 +17,9 @@ import { Textarea } from '../../../globalComponents/shadcn/textarea'
 import { DirectImageInput } from './forms/DirectImageInput'
 import { NameInput } from './forms/NameInput'
 
+// Other Components
+import CategoryLinks from './CategoryLinks'
+
 // DB ACTIONS & FORM SCHEMAS
 import { TESTERSCHEMA } from '../schemas/TESTERSCHEMA'
 import { TESTERDB } from '../server/db/mealBankActions'
@@ -128,9 +131,10 @@ function TESTER({ sessionData }) {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-12'>
       <h1 className={`font-lobster mt-12 text-5xl text-center md:text-8xl lg:text-8xl`}>Meal Bank</h1>
       {/* <div className='flex flex-wrap'> */}
+      <CategoryLinks />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-wrap gap-12 mt-24 justify-center  '>
           <FormField
@@ -268,7 +272,8 @@ function TESTER({ sessionData }) {
                 control={form.control}
                 name='image'
                 render={({ field }) => (
-                  <FormItem className={`custum-file-upload ${field.value ? 'border-green-400' : ''} `}>
+                  // <FormItem className={`custum-file-upload ${field.value ? 'border-green-400' : ''} `}>
+                  <FormItem className={`custum-file-upload ${imageInput ? 'border-green-400' : ''} `}>
                     <FormLabel>
                       <ImageUploadIcon />
                     </FormLabel>
@@ -279,11 +284,12 @@ function TESTER({ sessionData }) {
                           field.onChange(file)
                           handleNewImage(file)
                         }}
+                        value={imageInput ? imageInput : undefined}
                         type={'file'}
                         accept={'image/*'}
                       />
                     </FormControl>
-                    <FormDescription>- Max image size (1MB)</FormDescription>
+                    {/* <FormDescription>- Max image size (1MB)</FormDescription> */}
                     <FormMessage />
                   </FormItem>
                 )}
