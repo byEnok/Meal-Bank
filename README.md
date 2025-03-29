@@ -179,7 +179,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 <!-- GITHUB STATS  -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/byEnok/Meal-Bank.svg?style=for-the-badge
 [contributors-url]: https://github.com/byEnok/Meal-Bank/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/byEnok/Meal-Bank.svg?style=for-the-badge
 [forks-url]: https://github.com/byEnok/Meal-Bank/network/members
